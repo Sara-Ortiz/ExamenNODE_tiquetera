@@ -21,8 +21,8 @@ export const createTiquetera = async (req, res) => {
 
 export const getTiqueteras = async (req, res) => {
     try {
-        const GetTiqueteras = new GetTiqueteras(tiqueteraRepository);
-        const tiquetera = await GetTiqueteras.execute();
+        const getTiqueteras = new GetTiqueteras(tiqueteraRepository);
+        const tiquetera = await getTiqueteras.execute();
         res.status(200).json(tiquetera);
     } catch (err) {
         res.status(500).json({ error: err.message });
