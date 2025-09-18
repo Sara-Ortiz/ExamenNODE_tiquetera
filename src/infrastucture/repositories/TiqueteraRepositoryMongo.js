@@ -5,6 +5,7 @@ const TiqueteraSchema = new mongoose.Schema({
     cliente: String,
     saldo: Number,
     totalTransacciones: Number,
+    observaciones: String
 });
 
 
@@ -27,7 +28,10 @@ class TiqueteraRepositoryMongo {
 
     async update(id, tiqueteraData) {
         return await TiqueteraModel.findByIdAndUpdate(id, tiqueteraData, { new: true });
+
+
     }
+
 
     async delete(id) {
         return await TiqueteraModel.findByIdAndDelete(id);

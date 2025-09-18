@@ -56,6 +56,8 @@ export const updateTiquetera = async (req, res) => {
         // Si da error, mensaje 500
         res.status(500).json({ error: err.message });
     }
+
+    
 };
 
 export const deleteTiquetera = async (req, res) => {

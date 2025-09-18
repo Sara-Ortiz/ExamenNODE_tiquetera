@@ -4,7 +4,6 @@ export default class UpdateTiquetera {
     constructor(tiqueteraRepository) {
         this.tiqueteraRepository = tiqueteraRepository;
     }
-
     async execute(id, datosActualizados) {
         const tiqueteraActualizada = await this.tiqueteraRepository.update(id, datosActualizados);
 
@@ -13,6 +12,16 @@ export default class UpdateTiquetera {
             return null;
         }
 
+        const totalTransaccionesActualizadas = tiqueteraActualizada.totalTransacciones + 1;
+        tiqueteraActualizada.totalTransacciones = totalTransaccionesActualizadas
+
+
+        await this.tiqueteraRepository.update(id, { totalTransacciones: totalTransaccionesActualizadas });
+
+
         return tiqueteraActualizada;
     }
+
 }
+
+
