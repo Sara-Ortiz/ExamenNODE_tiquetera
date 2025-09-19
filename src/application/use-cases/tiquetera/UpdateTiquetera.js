@@ -6,7 +6,7 @@ export default class UpdateTiquetera {
     }
 
     async execute(id, datosActualizados) {
-        const tiquetera = await this.tiqueteraRepository.getById(id);
+        const tiquetera = await this.tiqueteraRepository.findById(id);
 
         if (!tiquetera) {
             console.warn(`No se encontró ninguna tiquetera con el id: ${id}`);
