@@ -22,7 +22,7 @@ class TiqueteraRepositoryMongo {
         return await TiqueteraModel.find();
     }
 
-    async findById(id) {
+    async getById(id) {
         return await TiqueteraModel.findById(id);
     }
 

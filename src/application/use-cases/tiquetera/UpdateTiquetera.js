@@ -4,24 +4,27 @@ export default class UpdateTiquetera {
     constructor(tiqueteraRepository) {
         this.tiqueteraRepository = tiqueteraRepository;
     }
-    async execute(id, datosActualizados) {
-        const tiqueteraActualizada = await this.tiqueteraRepository.update(id, datosActualizados);
 
-        if (!tiqueteraActualizada) {
+    async execute(id, datosActualizados) {
+        const tiquetera = await this.tiqueteraRepository.getById(id);
+
+        if (!tiquetera) {
             console.warn(`No se encontró ninguna tiquetera con el id: ${id}`);
             return null;
         }
 
-        const totalTransaccionesActualizadas = tiqueteraActualizada.totalTransacciones + 1;
-        tiqueteraActualizada.totalTransacciones = totalTransaccionesActualizadas
+        const totalTransaccionesActualizadas = tiquetera.totalTransacciones + 1;
+
+        const datosParaActualizar = {
+            ...datosActualizados,
+            totalTransacciones: totalTransaccionesActualizadas
+        };
 
 
-        await this.tiqueteraRepository.update(id, { totalTransacciones: totalTransaccionesActualizadas });
-
+        const tiqueteraActualizada = await this.tiqueteraRepository.update(id, datosParaActualizar);
 
         return tiqueteraActualizada;
     }
-
 }
 
 
